@@ -1,5 +1,6 @@
 require 'spree_core'
 require 'spree_stack_hooks'
+require 'spree_stack/config.rb'
 require 'spree_stack/aprova_facil_stack.rb'
 
 module SpreeStack
@@ -11,7 +12,7 @@ module SpreeStack
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
         Rails.env.production? ? require(c) : load(c)
         
-        SpreeAprovaStack.register
+        PaymentMethod::SpreeAprovaStack.register
       end
     end
 
